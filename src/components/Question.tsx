@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Card, Select } from 'antd';
+import { Button, Card, Select } from 'antd';
 
 import { QuestionSet } from 'config';
 import TextQuestion from './TextQuestion';
 import RadioQuestion from './RadioQuestion';
 import CheckboxQuestion from './CheckboxAnswer';
 import { SelectValue } from 'antd/lib/select';
-import { setQuestions } from 'store/actions/questions';
+import { removeQuestions, setQuestions } from 'store/actions/questions';
 
 interface IProps {
   question: QuestionSet;
@@ -32,6 +32,10 @@ const Question: React.FC<IProps> = ({ question }) => {
     if (type === 'checkbox') return <CheckboxQuestion />;
   };
 
+  const handleClick = () => {
+    dispatch(removeQuestions(id));
+  };
+
   return (
     <Card>
       {returnQuestionType()}
@@ -40,6 +44,9 @@ const Question: React.FC<IProps> = ({ question }) => {
         <Option value='radio'>Radio</Option>
         <Option value='checkbox'>Checkbox</Option>
       </Select>
+      <Button onClick={handleClick} type='default'>
+        Delete
+      </Button>
     </Card>
   );
 };
