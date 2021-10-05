@@ -10,6 +10,7 @@ import SubmitButton from 'components/SubmitButton';
 
 const MainPage: React.FC = () => {
   const questions = useSelector((state: RootState) => state.question);
+  console.log(questions);
 
   return (
     <div>
@@ -17,7 +18,7 @@ const MainPage: React.FC = () => {
       <Divider dashed />
       <AddQuestionMenu />
       {questions.map((question) => (
-        <Question question={question} />
+        <Question key={question.id} question={question} />
       ))}
       <SubmitButton />
     </div>
