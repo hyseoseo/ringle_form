@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Button, Card, Select } from 'antd';
+import { Button, Card, Select, Input } from 'antd';
 
 import { QuestionSet } from 'config';
 import TextQuestion from './TextQuestion';
 import RadioQuestion from './RadioQuestion';
-import CheckboxQuestion from './CheckboxAnswer';
+import CheckboxQuestion from './CheckboxQuestion';
 import { SelectValue } from 'antd/lib/select';
 import { removeQuestions, setQuestions } from 'store/actions/questions';
 
@@ -18,6 +18,7 @@ const { Option } = Select;
 const Question: React.FC<IProps> = ({ question }) => {
   const dispatch = useDispatch();
   const [type, setType] = useState(question.type);
+  const [questionText, setQuestionText] = useState('Question Text');
   const id = question.id;
 
   const handleChange = (value: SelectValue) => {
@@ -36,8 +37,13 @@ const Question: React.FC<IProps> = ({ question }) => {
     dispatch(removeQuestions(id));
   };
 
+  const handleQuestionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuestionText(e.target.value);
+  };
+
   return (
     <Card>
+      <Input value={questionText} onChange={handleQuestionChange} />
       {returnQuestionType()}
       <Select defaultValue='text' onChange={handleChange}>
         <Option value='text'>Text</Option>
