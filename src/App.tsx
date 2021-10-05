@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import './App.css';
+import './App.less';
 import { Layout } from 'antd';
 import MainPage from './MainPage';
 

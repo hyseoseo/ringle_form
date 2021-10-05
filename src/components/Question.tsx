@@ -43,7 +43,11 @@ const Question: React.FC<IProps> = ({ question }) => {
 
   return (
     <Card>
-      <Input value={questionText} onChange={handleQuestionChange} />
+      <Input
+        value={questionText}
+        onChange={handleQuestionChange}
+        className='question-text'
+      />
       {returnQuestionType()}
       <Select defaultValue='text' onChange={handleChange}>
         <Option value='text'>Text</Option>
