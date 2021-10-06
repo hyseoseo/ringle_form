@@ -4,9 +4,6 @@ import { Button, Card, Select, Input } from 'antd';
 
 import { QuestionSet } from 'config';
 import TextQuestion from './TextQuestion';
-import RadioQuestion from './RadioQuestion';
-import RadioOptions from './RadioOptions';
-import CheckboxQuestion from './CheckboxQuestion';
 import { SelectValue } from 'antd/lib/select';
 import {
   removeQuestions,

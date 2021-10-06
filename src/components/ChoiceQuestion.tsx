@@ -103,18 +103,20 @@ const ChoiceQuestion: React.FC<IProps> = ({ question }) => {
   };
 
   return (
-    <Card>
-      <Space direction='vertical'>
+    <Card className='answer-card'>
+      <div className='option-section'>
         {options.map((option) => (
-          <div key={option.id}>
+          <div key={option.id} className='option-content'>
             {SetType(option)}
             <button onClick={() => handleDeleteOption(option.id)}>
               <AiFillCloseCircle />
             </button>
           </div>
         ))}
-      </Space>
-      <Button onClick={handleAddOption}>Add</Button>
+      </div>
+      <div className='option-add-section'>
+        <Button onClick={handleAddOption}>Add Option</Button>
+      </div>
     </Card>
   );
 };

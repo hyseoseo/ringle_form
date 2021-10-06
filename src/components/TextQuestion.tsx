@@ -11,7 +11,7 @@ const TextQuestion: React.FC<IProps> = ({ question }) => {
   const [answer, setAnswer] = useState('answer');
 
   return (
-    <Card>
+    <Card className='answer-card'>
       <Input value={answer} />
     </Card>
   );

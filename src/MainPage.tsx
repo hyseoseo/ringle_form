@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import { RootState } from 'store/configureStore';
 import Title from 'components/Title';
-import AddQuestionMenu from 'components/AddQuestionMenu';
+import AddQuestionButton from 'components/AddQuestionButton';
 import Question from 'components/Question';
 
 export type TitleInfo = {
@@ -31,12 +31,12 @@ const MainPage: React.FC = () => {
   return (
     <div className='mainpage-container'>
       <Title titleInfo={titleInfo} handleTitleChange={handleTitleChange} />
-      <Divider dashed />
-      <AddQuestionMenu />
+      <Divider />
+      <AddQuestionButton />
       {questions.map((question) => (
         <Question key={question.id} question={question} />
       ))}
-      <Button type='primary' onClick={handleSubmit}>
+      <Button type='primary' onClick={handleSubmit} className='submit-button'>
         Submit
       </Button>
     </div>

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Button } from 'antd';
 import { addQuestions } from 'store/actions/questions';
 
-const AddQuestionMenu: React.FC = () => {
+const AddQuestionButton: React.FC = () => {
   const dispatch = useDispatch();
   const handleClick = () => {
     dispatch(addQuestions());
@@ -21,4 +21,4 @@ const AddQuestionMenu: React.FC = () => {
   );
 };
 
-export default AddQuestionMenu;
+export default AddQuestionButton;
