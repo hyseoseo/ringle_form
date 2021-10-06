@@ -10,8 +10,12 @@ const AddQuestionMenu: React.FC = () => {
   };
   return (
     <div>
-      <Button type='primary' onClick={handleClick}>
-        Add
+      <Button
+        type='primary'
+        onClick={handleClick}
+        className='add-question-button'
+      >
+        Add Question
       </Button>
     </div>
   );

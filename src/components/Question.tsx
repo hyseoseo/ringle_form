@@ -19,6 +19,7 @@ const Question: React.FC<IProps> = ({ question }) => {
   const dispatch = useDispatch();
   const [type, setType] = useState(question.type);
   const [questionText, setQuestionText] = useState('Question Text');
+  const [detailText, setDetailText] = useState('Detail Text');
   const id = question.id;
 
   const handleChange = (value: SelectValue) => {
@@ -41,12 +42,21 @@ const Question: React.FC<IProps> = ({ question }) => {
     setQuestionText(e.target.value);
   };
 
+  const handleDetailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setDetailText(e.target.value);
+  };
+
   return (
-    <Card>
+    <Card className='question-card'>
       <Input
         value={questionText}
         onChange={handleQuestionChange}
         className='question-text'
+      />
+      <Input
+        value={detailText}
+        onChange={handleDetailChange}
+        className='detail-text'
       />
       {returnQuestionType()}
       <Select defaultValue='text' onChange={handleChange}>

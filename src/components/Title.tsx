@@ -1,10 +1,27 @@
 import React from 'react';
-import { Card } from 'antd';
+import { Card, Input } from 'antd';
+import { TitleInfo } from 'MainPage';
 
-const Title: React.FC = () => {
+interface IProps {
+  handleTitleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  titleInfo: TitleInfo;
+}
+
+const Title: React.FC<IProps> = ({ handleTitleChange, titleInfo }) => {
   return (
-    <Card title='Default Title' size='default'>
-      Initial value
+    <Card className='title-card'>
+      <Input
+        value={titleInfo.title}
+        onChange={handleTitleChange}
+        className='question-text'
+        name='title'
+      />
+      <Input
+        value={titleInfo.desc}
+        onChange={handleTitleChange}
+        className='detail-text'
+        name='desc'
+      />
     </Card>
   );
 };

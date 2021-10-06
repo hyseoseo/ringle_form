@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { Button, Card, Radio, Space, Input, RadioChangeEvent } from 'antd';
-import { setConstantValue } from 'typescript';
-import { setQuestions } from 'store/actions/questions';
+import { AiFillCloseCircle } from '@react-icons/all-files/ai/AiFillCloseCircle';
 
-const initialOptions = [{ id: 1, value: 'Write your choice here' }];
+const initialOptions = [{ id: 1, value: '' }];
 
 const RadioQuestion: React.FC = () => {
   const [options, setOptions] = useState(initialOptions);
-  const [question, setQuestion] = useState('Question Text');
   const [answer, setAnswer] = useState('');
 
   const handleAddOption = () => {
@@ -16,7 +14,7 @@ const RadioQuestion: React.FC = () => {
         ...options,
         {
           id: options[options.length - 1].id + 1,
-          value: 'Write your choice here',
+          value: '',
         },
       ]);
     } else {
@@ -60,9 +58,9 @@ const RadioQuestion: React.FC = () => {
                   onChange={(e) => handleOptionChange(e, option.id)}
                 />
               </Radio>
-              <Button onClick={() => handleDeleteOption(option.id)}>
-                delete
-              </Button>
+              <button onClick={() => handleDeleteOption(option.id)}>
+                <AiFillCloseCircle />
+              </button>
             </div>
           ))}
         </Space>

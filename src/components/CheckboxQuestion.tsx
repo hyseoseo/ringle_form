@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import { Button, Card, Checkbox, Space, Input } from 'antd';
 import { CheckboxChangeEvent } from 'antd/lib/checkbox';
+import { AiFillCloseCircle } from '@react-icons/all-files/ai/AiFillCloseCircle';
 
-const initialOptions = [
-  { id: 1, value: 'Write your choice here', checked: false },
-];
+type CheckOption = {
+  id: number;
+  value: string;
+  checked: boolean;
+};
+
+const initialOptions: CheckOption[] = [{ id: 1, value: '', checked: false }];
 
 const CheckboxQuestion: React.FC = () => {
   const [options, setOptions] = useState(initialOptions);
-  const [question, setQuestion] = useState('Question Text');
-  const [answer, setAnswer] = useState([]);
+  const [answer, setAnswer] = useState<CheckOption[]>([]);
 
   const handleAddOption = () => {
     if (options.length) {
@@ -17,7 +21,7 @@ const CheckboxQuestion: React.FC = () => {
         ...options,
         {
           id: options[options.length - 1].id + 1,
-          value: 'Write your choice here',
+          value: '',
           checked: false,
         },
       ]);
@@ -52,6 +56,8 @@ const CheckboxQuestion: React.FC = () => {
     });
     setOptions(changed);
     console.log(options);
+    const selected = options.filter((option) => option.checked);
+    setAnswer(selected);
   };
 
   return (
@@ -65,9 +71,9 @@ const CheckboxQuestion: React.FC = () => {
                 onChange={(e) => handleChange(e, option.id)}
               />
             </Checkbox>
-            <Button onClick={() => handleDeleteOption(option.id)}>
-              delete
-            </Button>
+            <button onClick={() => handleDeleteOption(option.id)}>
+              <AiFillCloseCircle />
+            </button>
           </div>
         ))}
       </Space>
