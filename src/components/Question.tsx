@@ -5,6 +5,7 @@ import { Button, Card, Select, Input } from 'antd';
 import { QuestionSet } from 'config';
 import TextQuestion from './TextQuestion';
 import RadioQuestion from './RadioQuestion';
+import RadioOptions from './RadioOptions';
 import CheckboxQuestion from './CheckboxQuestion';
 import { SelectValue } from 'antd/lib/select';
 import {
@@ -13,6 +14,7 @@ import {
   setQuestionText,
   setQuestionDetail,
 } from 'store/actions/questions';
+import ChoiceQuestion from './ChoiceQuestion';
 
 interface IProps {
   question: QuestionSet;
@@ -31,8 +33,7 @@ const Question: React.FC<IProps> = ({ question }) => {
 
   const returnQuestionType = () => {
     if (type === 'text') return <TextQuestion question={question} />;
-    if (type === 'radio') return <RadioQuestion question={question} />;
-    if (type === 'checkbox') return <CheckboxQuestion question={question} />;
+    else return <ChoiceQuestion question={question} />;
   };
 
   const handleClick = () => {

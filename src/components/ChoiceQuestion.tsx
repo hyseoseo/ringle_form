@@ -5,6 +5,9 @@ import { CheckboxChangeEvent } from 'antd/lib/checkbox';
 import { AiFillCloseCircle } from '@react-icons/all-files/ai/AiFillCloseCircle';
 import { Option, QuestionSet } from 'config';
 import { setQuestionOptions } from 'store/actions/questions';
+import { SelectValue } from 'antd/lib/select';
+import RadioOptions from './RadioOptions';
+import CheckboxOptions from './CheckboxOptions';
 
 const initialOptions: Option[] = [{ id: 1, value: '', checked: false }];
 
@@ -12,9 +15,10 @@ interface IProps {
   question: QuestionSet;
 }
 
-const CheckboxQuestion: React.FC<IProps> = ({ question }) => {
+const ChoiceQuestion: React.FC<IProps> = ({ question }) => {
   const dispatch = useDispatch();
   const options = question.options;
+  const type = question.type;
   const [answer, setAnswer] = useState<Option[]>([]);
 
   const handleAddOption = () => {
@@ -66,17 +70,44 @@ const CheckboxQuestion: React.FC<IProps> = ({ question }) => {
     setAnswer(selected);
   };
 
+  const handleRadio = (id: number) => {
+    const changed = options.map((option) => {
+      if (option.id === id) {
+        return { ...option, checked: true };
+      } else {
+        return { ...option, checked: false };
+      }
+    });
+    dispatch(setQuestionOptions({ id: question.id, option: changed }));
+    const selected = options.filter((option) => option.checked);
+    setAnswer(selected);
+  };
+
+  const SetType = (option: Option) => {
+    if (type === 'radio')
+      return (
+        <RadioOptions
+          option={option}
+          handleRadio={handleRadio}
+          handleChange={handleChange}
+        />
+      );
+    if (type === 'checkbox')
+      return (
+        <CheckboxOptions
+          option={option}
+          handleCheckbox={handleCheckbox}
+          handleChange={handleChange}
+        />
+      );
+  };
+
   return (
     <Card>
       <Space direction='vertical'>
         {options.map((option) => (
           <div key={option.id}>
-            <Checkbox onChange={(e) => handleCheckbox(e, option.id)}>
-              <Input
-                value={option.value}
-                onChange={(e) => handleChange(e, option.id)}
-              />
-            </Checkbox>
+            {SetType(option)}
             <button onClick={() => handleDeleteOption(option.id)}>
               <AiFillCloseCircle />
             </button>
@@ -88,4 +119,4 @@ const CheckboxQuestion: React.FC<IProps> = ({ question }) => {
   );
 };
 
-export default CheckboxQuestion;
+export default ChoiceQuestion;
