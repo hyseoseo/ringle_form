@@ -1,11 +1,18 @@
 import { SelectValue } from 'antd/lib/select';
 
+export type Option = {
+  id: number;
+  value: string;
+  checked?: boolean;
+};
+
 export type QuestionSet = {
   id: number;
-  question: string;
+  questionText: string;
+  detailText: string;
   answer: string;
   type: SelectValue;
-  options?: string[];
+  options: Option[];
 };
 
 export const defaultQuestion = {

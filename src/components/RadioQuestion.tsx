@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import { Button, Card, Radio, Space, Input, RadioChangeEvent } from 'antd';
 import { AiFillCloseCircle } from '@react-icons/all-files/ai/AiFillCloseCircle';
+import { Option, QuestionSet } from 'config';
 
-const initialOptions = [{ id: 1, value: '' }];
+const initialOptions: Option[] = [{ id: 1, value: '' }];
 
-const RadioQuestion: React.FC = () => {
+interface IProps {
+  question: QuestionSet;
+}
+
+const RadioQuestion: React.FC<IProps> = ({ question }) => {
   const [options, setOptions] = useState(initialOptions);
   const [answer, setAnswer] = useState('');
 

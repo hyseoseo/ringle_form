@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import { Card, Input } from 'antd';
 
-const TextQuestion: React.FC = () => {
+import { QuestionSet } from 'config';
+
+interface IProps {
+  question: QuestionSet;
+}
+
+const TextQuestion: React.FC<IProps> = ({ question }) => {
   const [answer, setAnswer] = useState('answer');
 
   return (

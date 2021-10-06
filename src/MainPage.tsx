@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { Divider } from 'antd';
+import { Button, Divider } from 'antd';
 import { useSelector } from 'react-redux';
 
 import { RootState } from 'store/configureStore';
 import Title from 'components/Title';
 import AddQuestionMenu from 'components/AddQuestionMenu';
 import Question from 'components/Question';
-import SubmitButton from 'components/SubmitButton';
 
 export type TitleInfo = {
   title: string;
@@ -23,7 +22,11 @@ const MainPage: React.FC = () => {
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitleInfo({ ...titleInfo, [e.target.name]: e.target.value });
   };
-  console.log(titleInfo);
+
+  const handleSubmit = () => {
+    console.log(titleInfo);
+    console.log(questions);
+  };
 
   return (
     <div className='mainpage-container'>
@@ -33,7 +36,9 @@ const MainPage: React.FC = () => {
       {questions.map((question) => (
         <Question key={question.id} question={question} />
       ))}
-      <SubmitButton />
+      <Button type='primary' onClick={handleSubmit}>
+        Submit
+      </Button>
     </div>
   );
 };

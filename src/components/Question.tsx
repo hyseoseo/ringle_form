@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Button, Card, Select, Input } from 'antd';
 
@@ -7,7 +7,12 @@ import TextQuestion from './TextQuestion';
 import RadioQuestion from './RadioQuestion';
 import CheckboxQuestion from './CheckboxQuestion';
 import { SelectValue } from 'antd/lib/select';
-import { removeQuestions, setQuestions } from 'store/actions/questions';
+import {
+  removeQuestions,
+  setQuestionType,
+  setQuestionText,
+  setQuestionDetail,
+} from 'store/actions/questions';
 
 interface IProps {
   question: QuestionSet;
@@ -17,21 +22,17 @@ const { Option } = Select;
 
 const Question: React.FC<IProps> = ({ question }) => {
   const dispatch = useDispatch();
-  const [type, setType] = useState(question.type);
-  const [questionText, setQuestionText] = useState('Question Text');
-  const [detailText, setDetailText] = useState('Detail Text');
   const id = question.id;
+  const type = question.type;
 
   const handleChange = (value: SelectValue) => {
-    setType(value);
-    console.log(value);
-    dispatch(setQuestions({ id: id, type: type }));
+    dispatch(setQuestionType({ id: id, type: value }));
   };
 
   const returnQuestionType = () => {
-    if (type === 'text') return <TextQuestion />;
-    if (type === 'radio') return <RadioQuestion />;
-    if (type === 'checkbox') return <CheckboxQuestion />;
+    if (type === 'text') return <TextQuestion question={question} />;
+    if (type === 'radio') return <RadioQuestion question={question} />;
+    if (type === 'checkbox') return <CheckboxQuestion question={question} />;
   };
 
   const handleClick = () => {
@@ -39,22 +40,22 @@ const Question: React.FC<IProps> = ({ question }) => {
   };
 
   const handleQuestionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuestionText(e.target.value);
+    dispatch(setQuestionText({ id: id, questionText: e.target.value }));
   };
 
   const handleDetailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDetailText(e.target.value);
+    dispatch(setQuestionDetail({ id: id, detailText: e.target.value }));
   };
 
   return (
     <Card className='question-card'>
       <Input
-        value={questionText}
+        value={question.questionText}
         onChange={handleQuestionChange}
         className='question-text'
       />
       <Input
-        value={detailText}
+        value={question.detailText}
         onChange={handleDetailChange}
         className='detail-text'
       />
