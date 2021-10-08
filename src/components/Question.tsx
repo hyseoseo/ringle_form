@@ -27,7 +27,7 @@ const Question: React.FC<IProps> = ({ question }) => {
   const handleChange = (value: SelectValue) => {
     dispatch(setQuestionType({ id: id, type: value }));
   };
-
+  console.log('Question');
   const returnQuestionType = () => {
     if (type === 'text') return <TextQuestion question={question} />;
     else return <ChoiceQuestion question={question} />;
@@ -70,4 +70,4 @@ const Question: React.FC<IProps> = ({ question }) => {
   );
 };
 
-export default Question;
+export default React.memo(Question);

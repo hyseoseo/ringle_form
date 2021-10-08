@@ -8,6 +8,7 @@ interface IProps {
 }
 
 const Title: React.FC<IProps> = ({ handleTitleChange, titleInfo }) => {
+  console.log('title');
   return (
     <Card className='title-card'>
       <Input
@@ -26,4 +27,7 @@ const Title: React.FC<IProps> = ({ handleTitleChange, titleInfo }) => {
   );
 };
 
-export default Title;
+export default React.memo(
+  Title,
+  (prevProps, nextProps) => prevProps.titleInfo === nextProps.titleInfo,
+);

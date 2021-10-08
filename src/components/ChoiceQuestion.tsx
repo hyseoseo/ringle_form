@@ -21,6 +21,7 @@ const ChoiceQuestion: React.FC<IProps> = ({ question }) => {
   const type = question.type;
   const [answer, setAnswer] = useState<Option[]>([]);
 
+  console.log('choice question');
   const handleAddOption = () => {
     if (options.length) {
       dispatch(

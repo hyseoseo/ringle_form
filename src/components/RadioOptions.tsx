@@ -13,6 +13,7 @@ const RadioOptions: React.FC<IProps> = ({
   handleRadio,
   handleChange,
 }) => {
+  console.log(`radio option`);
   return (
     <Radio onChange={() => handleRadio(option.id)} checked={option.checked}>
       <Input

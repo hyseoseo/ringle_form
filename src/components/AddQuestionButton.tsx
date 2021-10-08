@@ -8,6 +8,7 @@ const AddQuestionButton: React.FC = () => {
   const handleClick = () => {
     dispatch(addQuestions());
   };
+  console.log('add question');
   return (
     <div>
       <Button

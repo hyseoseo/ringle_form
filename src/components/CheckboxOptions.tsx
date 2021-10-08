@@ -14,6 +14,7 @@ const CheckboxOptions: React.FC<IProps> = ({
   handleCheckbox,
   handleChange,
 }) => {
+  console.log('checkbox option');
   return (
     <Checkbox
       onChange={(e) => handleCheckbox(e, option.id)}

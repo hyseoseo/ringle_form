@@ -10,6 +10,7 @@ interface IProps {
 const TextQuestion: React.FC<IProps> = ({ question }) => {
   const [answer, setAnswer] = useState('answer');
 
+  console.log(`text question`);
   return (
     <Card className='answer-card'>
       <Input value={answer} />
@@ -17,4 +18,4 @@ const TextQuestion: React.FC<IProps> = ({ question }) => {
   );
 };
 
-export default TextQuestion;
+export default React.memo(TextQuestion);
