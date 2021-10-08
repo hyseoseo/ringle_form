@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Button, Card, Select, Input } from 'antd';
+import { Button, Card, Select, Input, Modal } from 'antd';
 
 import { QuestionSet } from 'config';
 import TextQuestion from './TextQuestion';
@@ -23,6 +23,7 @@ const Question: React.FC<IProps> = ({ question }) => {
   const dispatch = useDispatch();
   const id = question.id;
   const type = question.type;
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleChange = (value: SelectValue) => {
     dispatch(setQuestionType({ id: id, type: value }));
@@ -34,7 +35,16 @@ const Question: React.FC<IProps> = ({ question }) => {
   };
 
   const handleClick = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOK = () => {
     dispatch(removeQuestions(id));
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
   };
 
   const handleQuestionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,14 +68,23 @@ const Question: React.FC<IProps> = ({ question }) => {
         className='detail-text'
       />
       {returnQuestionType()}
-      <Select defaultValue='text' onChange={handleChange}>
-        <Option value='text'>Text</Option>
-        <Option value='radio'>Radio</Option>
-        <Option value='checkbox'>Checkbox</Option>
-      </Select>
-      <Button onClick={handleClick} type='default'>
-        Delete
-      </Button>
+      <div className='card-typeselect-delete'>
+        <Select
+          defaultValue='text'
+          onChange={handleChange}
+          className='question-type-select'
+        >
+          <Option value='text'>Text</Option>
+          <Option value='radio'>Radio</Option>
+          <Option value='checkbox'>Checkbox</Option>
+        </Select>
+        <Button onClick={handleClick} type='default'>
+          Delete
+        </Button>
+      </div>
+      <Modal visible={isModalVisible} onOk={handleOK} onCancel={handleCancel}>
+        Are you sure to delete this question?
+      </Modal>
     </Card>
   );
 };
