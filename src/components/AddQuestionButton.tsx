@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Button } from 'antd';
+
 import { addQuestions } from 'store/actions/questions';
 
 const AddQuestionButton: React.FC = () => {
@@ -8,7 +9,7 @@ const AddQuestionButton: React.FC = () => {
   const handleClick = () => {
     dispatch(addQuestions());
   };
-  console.log('add question');
+
   return (
     <div>
       <Button
@@ -22,4 +23,4 @@ const AddQuestionButton: React.FC = () => {
   );
 };
 
-export default AddQuestionButton;
+export default React.memo(AddQuestionButton);

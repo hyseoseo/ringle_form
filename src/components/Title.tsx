@@ -8,7 +8,6 @@ interface IProps {
 }
 
 const Title: React.FC<IProps> = ({ handleTitleChange, titleInfo }) => {
-  console.log('title');
   return (
     <Card className='title-card'>
       <Input

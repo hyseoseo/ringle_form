@@ -19,7 +19,6 @@ const MainPage: React.FC = () => {
     desc: 'Default Detail',
   });
 
-  console.log('main');
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitleInfo({ ...titleInfo, [e.target.name]: e.target.value });
   };

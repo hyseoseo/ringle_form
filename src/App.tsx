@@ -1,9 +1,10 @@
-import React, { FC } from 'react';
-import './App.less';
+import React from 'react';
 import { Layout } from 'antd';
+
+import './App.less';
 import MainPage from './MainPage';
 
-const App: FC = () => {
+const App: React.FC = () => {
   const { Header, Content } = Layout;
   return (
     <div className='App'>

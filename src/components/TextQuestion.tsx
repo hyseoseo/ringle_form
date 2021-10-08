@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Input } from 'antd';
+import { Input } from 'antd';
 
 import { QuestionSet } from 'config';
 
@@ -10,10 +10,13 @@ interface IProps {
 const TextQuestion: React.FC<IProps> = ({ question }) => {
   const [answer, setAnswer] = useState('answer');
 
-  console.log(`text question`);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAnswer(e.target.value);
+  };
+
   return (
     <div className='answer-card'>
-      <Input value={answer} />
+      <Input value={answer} onChange={handleChange} />
     </div>
   );
 };

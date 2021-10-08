@@ -1,6 +1,7 @@
 import React from 'react';
 import { Input, Checkbox } from 'antd';
 import { CheckboxChangeEvent } from 'antd/lib/checkbox';
+
 import { Option } from 'config';
 
 interface IProps {
@@ -14,7 +15,6 @@ const CheckboxOptions: React.FC<IProps> = ({
   handleCheckbox,
   handleChange,
 }) => {
-  console.log('checkbox option');
   return (
     <Checkbox
       onChange={(e) => handleCheckbox(e, option.id)}

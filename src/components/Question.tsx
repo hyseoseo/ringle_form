@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Button, Card, Select, Input, Modal } from 'antd';
+import { SelectValue } from 'antd/lib/select';
 
 import { QuestionSet } from 'config';
-import TextQuestion from './TextQuestion';
-import { SelectValue } from 'antd/lib/select';
 import {
   removeQuestions,
   setQuestionType,
@@ -12,6 +11,7 @@ import {
   setQuestionDetail,
 } from 'store/actions/questions';
 import ChoiceQuestion from './ChoiceQuestion';
+import TextQuestion from './TextQuestion';
 
 interface IProps {
   question: QuestionSet;
@@ -28,8 +28,8 @@ const Question: React.FC<IProps> = ({ question }) => {
   const handleChange = (value: SelectValue) => {
     dispatch(setQuestionType({ id: id, type: value }));
   };
-  console.log('Question');
-  const returnQuestionType = () => {
+
+  const renderQuestionType = () => {
     if (type === 'text') return <TextQuestion question={question} />;
     else return <ChoiceQuestion question={question} />;
   };
@@ -67,7 +67,7 @@ const Question: React.FC<IProps> = ({ question }) => {
         onChange={handleDetailChange}
         className='detail-text'
       />
-      {returnQuestionType()}
+      {renderQuestionType()}
       <div className='card-typeselect-delete'>
         <Select
           defaultValue='text'

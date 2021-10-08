@@ -1,5 +1,6 @@
 import React from 'react';
 import { Radio, Input } from 'antd';
+
 import { Option } from 'config';
 
 interface IProps {
@@ -13,7 +14,6 @@ const RadioOptions: React.FC<IProps> = ({
   handleRadio,
   handleChange,
 }) => {
-  console.log(`radio option`);
   return (
     <Radio
       onChange={() => handleRadio(option.id)}

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Button, Card, Checkbox, Space, Input } from 'antd';
+import { Button } from 'antd';
 import { CheckboxChangeEvent } from 'antd/lib/checkbox';
 import { AiFillCloseCircle } from '@react-icons/all-files/ai/AiFillCloseCircle';
+
 import { Option, QuestionSet } from 'config';
 import { setQuestionOptions } from 'store/actions/questions';
-import { SelectValue } from 'antd/lib/select';
 import RadioOptions from './RadioOptions';
 import CheckboxOptions from './CheckboxOptions';
 
@@ -84,7 +84,7 @@ const ChoiceQuestion: React.FC<IProps> = ({ question }) => {
     setAnswer(selected);
   };
 
-  const SetType = (option: Option) => {
+  const renderType = (option: Option) => {
     if (type === 'radio')
       return (
         <RadioOptions
@@ -107,7 +107,7 @@ const ChoiceQuestion: React.FC<IProps> = ({ question }) => {
     <div className='answer-card'>
       {options.map((option) => (
         <div key={option.id} className='option-content'>
-          {SetType(option)}
+          {renderType(option)}
           <button onClick={() => handleDeleteOption(option.id)}>
             <AiFillCloseCircle />
           </button>
