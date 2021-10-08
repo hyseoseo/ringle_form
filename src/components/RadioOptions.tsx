@@ -15,10 +15,15 @@ const RadioOptions: React.FC<IProps> = ({
 }) => {
   console.log(`radio option`);
   return (
-    <Radio onChange={() => handleRadio(option.id)} checked={option.checked}>
+    <Radio
+      onChange={() => handleRadio(option.id)}
+      checked={option.checked}
+      className='option-input-wrapper'
+    >
       <Input
         value={option.value}
         onChange={(e) => handleChange(e, option.id)}
+        className='option-input'
       />
     </Radio>
   );

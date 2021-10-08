@@ -19,10 +19,12 @@ const CheckboxOptions: React.FC<IProps> = ({
     <Checkbox
       onChange={(e) => handleCheckbox(e, option.id)}
       checked={option.checked}
+      className='option-input-wrapper'
     >
       <Input
         value={option.value}
         onChange={(e) => handleChange(e, option.id)}
+        className='option-input'
       />
     </Checkbox>
   );

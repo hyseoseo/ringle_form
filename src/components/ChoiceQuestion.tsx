@@ -104,21 +104,19 @@ const ChoiceQuestion: React.FC<IProps> = ({ question }) => {
   };
 
   return (
-    <Card className='answer-card'>
-      <div className='option-section'>
-        {options.map((option) => (
-          <div key={option.id} className='option-content'>
-            {SetType(option)}
-            <button onClick={() => handleDeleteOption(option.id)}>
-              <AiFillCloseCircle />
-            </button>
-          </div>
-        ))}
-      </div>
+    <div className='answer-card'>
+      {options.map((option) => (
+        <div key={option.id} className='option-content'>
+          {SetType(option)}
+          <button onClick={() => handleDeleteOption(option.id)}>
+            <AiFillCloseCircle />
+          </button>
+        </div>
+      ))}
       <div className='option-add-section'>
         <Button onClick={handleAddOption}>Add Option</Button>
       </div>
-    </Card>
+    </div>
   );
 };
 

@@ -12,9 +12,9 @@ const TextQuestion: React.FC<IProps> = ({ question }) => {
 
   console.log(`text question`);
   return (
-    <Card className='answer-card'>
+    <div className='answer-card'>
       <Input value={answer} />
-    </Card>
+    </div>
   );
 };
 

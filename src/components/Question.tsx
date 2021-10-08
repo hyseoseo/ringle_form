@@ -78,7 +78,7 @@ const Question: React.FC<IProps> = ({ question }) => {
           <Option value='radio'>Radio</Option>
           <Option value='checkbox'>Checkbox</Option>
         </Select>
-        <Button onClick={handleClick} type='default'>
+        <Button danger onClick={handleClick} type='default'>
           Delete
         </Button>
       </div>

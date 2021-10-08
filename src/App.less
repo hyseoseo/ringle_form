@@ -24,7 +24,8 @@ button {
   margin-top: 10px;
   width: 80%;
   border-radius: 8px;
-  max-width: 1256px;
+  max-width: 768px;
+  min-width: 400px;
 }
 
 .question-text,
@@ -49,24 +50,46 @@ button {
 }
 
 .answer-card {
-  margin-top: 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.option-content {
+  width: 100%;
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .option-add-section {
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .card-typeselect-delete {
-  margin-top: 10px;
+  margin-top: 20px;
   position: relative;
   left: 25%;
   display: flex;
   width: 50%;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 
 .question-type-select {
   width: 120px;
   min-width: 120px;
+}
+
+.option-input-wrapper {
+  padding: 4px;
+}
+
+.option-input {
+  min-width: 300px;
 }
