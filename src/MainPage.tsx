@@ -2,15 +2,11 @@ import React, { useState } from 'react';
 import { Button, Divider } from 'antd';
 import { useSelector } from 'react-redux';
 
+import { TitleInfo } from 'config';
 import { RootState } from 'store/configureStore';
 import Title from 'components/Title';
 import AddQuestionButton from 'components/AddQuestionButton';
-import Question from 'components/Question';
-
-export type TitleInfo = {
-  title: string;
-  desc: string;
-};
+import Question from 'components/Questions/Question';
 
 const MainPage: React.FC = () => {
   const questions = useSelector((state: RootState) => state.question);
@@ -24,7 +20,9 @@ const MainPage: React.FC = () => {
   };
 
   const handleSubmit = () => {
+    console.log('Title');
     console.log(titleInfo);
+    console.log('Question List');
     console.log(questions);
   };
 

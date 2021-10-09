@@ -15,6 +15,11 @@ export type QuestionSet = {
   options: Option[];
 };
 
+export type TitleInfo = {
+  title: string;
+  desc: string;
+};
+
 export const defaultQuestion = {
   question: 'Question Text',
   answer: 'Answer Text',

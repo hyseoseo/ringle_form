@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Button } from 'antd';
 import { CheckboxChangeEvent } from 'antd/lib/checkbox';
-import { AiFillCloseCircle } from '@react-icons/all-files/ai/AiFillCloseCircle';
+import { AiFillCloseCircle } from 'react-icons/ai';
 
 import { Option, QuestionSet } from 'config';
 import { setQuestionOptions, setAnswer } from 'store/actions/questions';
@@ -113,7 +113,7 @@ const ChoiceQuestion: React.FC<IProps> = ({ question }) => {
   }, [type]);
 
   return (
-    <div className='answer-card'>
+    <div className='answer-container'>
       {options.map((option) => (
         <div key={option.id} className='option-content'>
           {renderType(option)}

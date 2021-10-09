@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Input } from 'antd';
 
 import { QuestionSet } from 'config';
-import { setAnswer } from 'store/actions/questions';
+import { setAnswer, setQuestionOptions } from 'store/actions/questions';
 
 interface IProps {
   question: QuestionSet;
@@ -15,10 +15,11 @@ const TextQuestion: React.FC<IProps> = ({ question }) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setAnswer({ id: question.id, answer: e.target.value }));
+    dispatch(setQuestionOptions({ id: question.id, option: [] }));
   };
 
   return (
-    <div className='answer-card'>
+    <div className='answer-container'>
       <Input value={answer} onChange={handleChange} />
     </div>
   );

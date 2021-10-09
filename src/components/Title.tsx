@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, Input } from 'antd';
-import { TitleInfo } from 'MainPage';
+
+import { TitleInfo } from 'config';
 
 interface IProps {
   handleTitleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
