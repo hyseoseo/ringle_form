@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Button } from 'antd';
 import { CheckboxChangeEvent } from 'antd/lib/checkbox';
@@ -19,9 +19,8 @@ const ChoiceQuestion: React.FC<IProps> = ({ question }) => {
   const dispatch = useDispatch();
   const options = question.options;
   const type = question.type;
-  const [answer, setAnswer] = useState<Option[]>([]);
+  const [answer, setAnswer] = useState<string[]>([]);
 
-  console.log('choice question');
   const handleAddOption = () => {
     if (options.length) {
       dispatch(
@@ -68,7 +67,7 @@ const ChoiceQuestion: React.FC<IProps> = ({ question }) => {
     });
     dispatch(setQuestionOptions({ id: question.id, option: changed }));
     const selected = options.filter((option) => option.checked);
-    setAnswer(selected);
+    //setAnswer(selected);
   };
 
   const handleRadio = (id: number) => {
@@ -81,8 +80,9 @@ const ChoiceQuestion: React.FC<IProps> = ({ question }) => {
     });
     dispatch(setQuestionOptions({ id: question.id, option: changed }));
     const selected = options.filter((option) => option.checked);
-    setAnswer(selected);
   };
+
+  console.log(answer);
 
   const renderType = (option: Option) => {
     if (type === 'radio')
@@ -102,6 +102,14 @@ const ChoiceQuestion: React.FC<IProps> = ({ question }) => {
         />
       );
   };
+
+  useEffect(() => {
+    const resetChecked = options.map((option) => ({
+      ...option,
+      checked: false,
+    }));
+    dispatch(setQuestionOptions({ id: question.id, option: resetChecked }));
+  }, [type]);
 
   return (
     <div className='answer-card'>

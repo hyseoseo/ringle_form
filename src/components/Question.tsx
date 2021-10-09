@@ -9,6 +9,7 @@ import {
   setQuestionType,
   setQuestionText,
   setQuestionDetail,
+  setQuestionOptions,
 } from 'store/actions/questions';
 import ChoiceQuestion from './ChoiceQuestion';
 import TextQuestion from './TextQuestion';
@@ -30,8 +31,9 @@ const Question: React.FC<IProps> = ({ question }) => {
   };
 
   const renderQuestionType = () => {
-    if (type === 'text') return <TextQuestion question={question} />;
-    else return <ChoiceQuestion question={question} />;
+    if (type === 'text') {
+      return <TextQuestion question={question} />;
+    } else return <ChoiceQuestion question={question} />;
   };
 
   const handleClick = () => {

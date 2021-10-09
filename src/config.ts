@@ -10,7 +10,7 @@ export type QuestionSet = {
   id: number;
   questionText: string;
   detailText: string;
-  answer: string;
+  answer: string | string[];
   type: SelectValue;
   options: Option[];
 };
