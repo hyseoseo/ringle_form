@@ -9,7 +9,6 @@ import {
   setQuestionType,
   setQuestionText,
   setQuestionDetail,
-  setQuestionOptions,
 } from 'store/actions/questions';
 import ChoiceQuestion from './ChoiceQuestion';
 import TextQuestion from './TextQuestion';

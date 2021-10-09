@@ -1,17 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Input } from 'antd';
 
 import { QuestionSet } from 'config';
+import { setAnswer } from 'store/actions/questions';
 
 interface IProps {
   question: QuestionSet;
 }
 
 const TextQuestion: React.FC<IProps> = ({ question }) => {
-  const [answer, setAnswer] = useState('answer');
+  const dispatch = useDispatch();
+  const answer = question.answer;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAnswer(e.target.value);
+    dispatch(setAnswer({ id: question.id, answer: e.target.value }));
   };
 
   return (

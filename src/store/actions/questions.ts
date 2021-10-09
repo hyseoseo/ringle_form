@@ -5,6 +5,7 @@ export const SET_QUESTION_TYPE = 'SET_QUESTION_TYPE' as const;
 export const SET_QUESTION_OPTIONS = 'SET_QUESTION_OPTIONS' as const;
 export const SET_QUESTION_TEXT = 'SET_QUESTION_TEXT' as const;
 export const SET_DETAIL_TEXT = 'SET_DETAIL_TEXT' as const;
+export const SET_ANSWER = 'SET_ANSWER' as const;
 export const ADD_QUESTIONS = 'ADD_QUESTIONS' as const;
 export const REMOVE_QUESTIONS = 'REMOVE_QUESTIONS' as const;
 
@@ -28,6 +29,11 @@ export type changeDetailTextInfo = {
   detailText: string;
 };
 
+export type changeAnswerInfo = {
+  id: number;
+  answer: string | string[];
+};
+
 export const setQuestionType = (info: changeTypeInfo) => ({
   type: SET_QUESTION_TYPE,
   payload: info,
@@ -48,6 +54,11 @@ export const setQuestionDetail = (info: changeDetailTextInfo) => ({
   payload: info,
 });
 
+export const setAnswer = (info: changeAnswerInfo) => ({
+  type: SET_ANSWER,
+  payload: info,
+});
+
 export const addQuestions = () => ({
   type: ADD_QUESTIONS,
 });
@@ -62,5 +73,6 @@ export type QuestionsAction =
   | ReturnType<typeof setQuestionOptions>
   | ReturnType<typeof setQuestionText>
   | ReturnType<typeof setQuestionDetail>
+  | ReturnType<typeof setAnswer>
   | ReturnType<typeof addQuestions>
   | ReturnType<typeof removeQuestions>;

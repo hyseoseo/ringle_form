@@ -6,6 +6,7 @@ import {
   SET_QUESTION_OPTIONS,
   SET_QUESTION_TEXT,
   SET_DETAIL_TEXT,
+  SET_ANSWER,
 } from 'store/actions/questions';
 import { QuestionSet } from 'config';
 
@@ -75,6 +76,15 @@ const questionReducer = (state = initialState, action: QuestionsAction) => {
         }
       });
       return detailTextChanged;
+    case SET_ANSWER:
+      const answerChanged = state.map((question) => {
+        if (question.id === action.payload.id) {
+          return { ...question, answer: action.payload.answer };
+        } else {
+          return question;
+        }
+      });
+      return answerChanged;
     case REMOVE_QUESTIONS:
       const removedQuestions = state.filter(
         (question) => question.id !== action.payload,

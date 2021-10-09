@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Button } from 'antd';
 import { CheckboxChangeEvent } from 'antd/lib/checkbox';
 import { AiFillCloseCircle } from '@react-icons/all-files/ai/AiFillCloseCircle';
 
 import { Option, QuestionSet } from 'config';
-import { setQuestionOptions } from 'store/actions/questions';
+import { setQuestionOptions, setAnswer } from 'store/actions/questions';
 import RadioOptions from './RadioOptions';
 import CheckboxOptions from './CheckboxOptions';
 
@@ -19,7 +19,6 @@ const ChoiceQuestion: React.FC<IProps> = ({ question }) => {
   const dispatch = useDispatch();
   const options = question.options;
   const type = question.type;
-  const [answer, setAnswer] = useState<string[]>([]);
 
   const handleAddOption = () => {
     if (options.length) {
@@ -66,8 +65,6 @@ const ChoiceQuestion: React.FC<IProps> = ({ question }) => {
       }
     });
     dispatch(setQuestionOptions({ id: question.id, option: changed }));
-    const selected = options.filter((option) => option.checked);
-    //setAnswer(selected);
   };
 
   const handleRadio = (id: number) => {
@@ -79,10 +76,7 @@ const ChoiceQuestion: React.FC<IProps> = ({ question }) => {
       }
     });
     dispatch(setQuestionOptions({ id: question.id, option: changed }));
-    const selected = options.filter((option) => option.checked);
   };
-
-  console.log(answer);
 
   const renderType = (option: Option) => {
     if (type === 'radio')
@@ -102,6 +96,13 @@ const ChoiceQuestion: React.FC<IProps> = ({ question }) => {
         />
       );
   };
+
+  useEffect(() => {
+    const selected = options
+      .filter((option) => option.checked)
+      .map((select) => select.value);
+    dispatch(setAnswer({ id: question.id, answer: selected }));
+  }, [options]);
 
   useEffect(() => {
     const resetChecked = options.map((option) => ({
