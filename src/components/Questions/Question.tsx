@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { Button, Card, Select, Input, Modal } from 'antd';
+import { Card, Modal } from 'antd';
 import { SelectValue } from 'antd/lib/select';
 
 import { QuestionSet } from 'config';
@@ -14,12 +14,12 @@ import ChoiceQuestion from './ChoiceQuestion';
 import TextQuestion from './TextQuestion';
 import QuestionText from './QustionText';
 import DetailText from './DetailText';
+import TypeSelect from './TypeSelect';
+import DeleteQuestionButton from '../buttons/DeleteQuestionButton';
 
 interface IProps {
   question: QuestionSet;
 }
-
-const { Option } = Select;
 
 const Question: React.FC<IProps> = ({ question }) => {
   const dispatch = useDispatch();
@@ -27,9 +27,12 @@ const Question: React.FC<IProps> = ({ question }) => {
   const type = question.type;
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const handleChange = (value: SelectValue) => {
-    dispatch(setQuestionType({ id: id, type: value }));
-  };
+  const handleChange = useCallback(
+    (value: SelectValue) => {
+      dispatch(setQuestionType({ id: id, type: value }));
+    },
+    [id, dispatch],
+  );
 
   const renderQuestionType = () => {
     if (type === 'text') {
@@ -37,9 +40,9 @@ const Question: React.FC<IProps> = ({ question }) => {
     } else return <ChoiceQuestion question={question} />;
   };
 
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     setIsModalVisible(true);
-  };
+  }, []);
 
   const handleOK = () => {
     dispatch(removeQuestions(id));
@@ -76,18 +79,8 @@ const Question: React.FC<IProps> = ({ question }) => {
       />
       {renderQuestionType()}
       <div className='card-typeselect-delete'>
-        <Select
-          defaultValue='text'
-          onChange={handleChange}
-          className='question-type-select'
-        >
-          <Option value='text'>Text</Option>
-          <Option value='radio'>Radio</Option>
-          <Option value='checkbox'>Checkbox</Option>
-        </Select>
-        <Button danger onClick={handleClick} type='default'>
-          Delete
-        </Button>
+        <TypeSelect handleChange={handleChange} />
+        <DeleteQuestionButton handleClick={handleClick} />
       </div>
       <Modal visible={isModalVisible} onOk={handleOK} onCancel={handleCancel}>
         Are you sure to delete this question?

@@ -4,10 +4,10 @@ import { useSelector } from 'react-redux';
 import { TitleInfo } from 'config';
 import { RootState } from 'store/configureStore';
 import Title from 'components/Title';
-import AddQuestionButton from 'components/AddQuestionButton';
+import AddQuestionButton from 'components/buttons/AddQuestionButton';
 import Question from 'components/Questions/Question';
 import DivideLine from 'components/DivideLine';
-import SubmitButton from 'components/SubmitButton';
+import SubmitButton from 'components/buttons/SubmitButton';
 
 const MainPage: React.FC = () => {
   const questions = useSelector((state: RootState) => state.question);
