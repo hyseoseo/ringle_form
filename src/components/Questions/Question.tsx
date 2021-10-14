@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { Button, Card, Select, Input, Modal } from 'antd';
 import { SelectValue } from 'antd/lib/select';
@@ -12,6 +12,8 @@ import {
 } from 'store/actions/questions';
 import ChoiceQuestion from './ChoiceQuestion';
 import TextQuestion from './TextQuestion';
+import QuestionText from './QustionText';
+import DetailText from './DetailText';
 
 interface IProps {
   question: QuestionSet;
@@ -48,25 +50,29 @@ const Question: React.FC<IProps> = ({ question }) => {
     setIsModalVisible(false);
   };
 
-  const handleQuestionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setQuestionText({ id: id, questionText: e.target.value }));
-  };
+  const handleQuestionChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      dispatch(setQuestionText({ id: id, questionText: e.target.value }));
+    },
+    [id, dispatch],
+  );
 
-  const handleDetailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setQuestionDetail({ id: id, detailText: e.target.value }));
-  };
+  const handleDetailChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      dispatch(setQuestionDetail({ id: id, detailText: e.target.value }));
+    },
+    [id, dispatch],
+  );
 
   return (
     <Card className='question-card'>
-      <Input
+      <QuestionText
         value={question.questionText}
-        onChange={handleQuestionChange}
-        className='question-text'
+        handleQuestionChange={handleQuestionChange}
       />
-      <Input
+      <DetailText
         value={question.detailText}
-        onChange={handleDetailChange}
-        className='detail-text'
+        handleDetailChange={handleDetailChange}
       />
       {renderQuestionType()}
       <div className='card-typeselect-delete'>

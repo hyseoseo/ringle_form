@@ -27,7 +27,4 @@ const Title: React.FC<IProps> = ({ handleTitleChange, titleInfo }) => {
   );
 };
 
-export default React.memo(
-  Title,
-  (prevProps, nextProps) => prevProps.titleInfo === nextProps.titleInfo,
-);
+export default React.memo(Title);
